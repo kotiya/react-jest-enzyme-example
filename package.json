@@ -26,8 +26,6 @@
     "@babel/preset-react": "^7.10.4",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^26.1.0",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.4.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
@@ -39,6 +37,8 @@
     "eslint-plugin-react-hooks": "^4.0.8",
     "jest": "^26.1.0",
     "prettier": "^2.0.5",
-    "react-test-renderer": "^16.13.1"
+    "react-test-renderer": "^16.13.1",
+    "@testing-library/jest-dom": "5.11.6",
+    "@testing-library/react": "12.1.2"
   }
 }
