@@ -1,19 +1,11 @@
-/**
- * @file Test suite for the Calculator component.
- */
-
 import React from 'react';
-import renderer from 'react-test-renderer';
-import { mount, shallow } from 'enzyme';
-
+import { render, screen } from '@testing-library/react';
 import Calculator, { getSum } from '../components/calculator';
 
 describe('Calculator component', () => {
   it('should render snapshot', () => {
-    const component = renderer.create(<Calculator />);
-
-    const tree = component.toJSON();
-    expect(tree).toMatchSnapshot();
+    const { container } = render(<Calculator />);
+    expect(container).toMatchSnapshot();
   });
 
   it('should return the correct sum', () => {
@@ -22,25 +14,23 @@ describe('Calculator component', () => {
   });
 
   it('should render required form elements', () => {
-    const calculator = shallow(<Calculator />);
-
-    const form = calculator.find('form');
-    expect(form.length).toBe(1);
-    expect(form.find('input').length).toBe(2);
-    expect(form.find('button').length).toBe(1);
-    expect(form.find('p.result').length).toBe(1);
+    render(<Calculator />);
+    expect(screen.getByRole('form')).toBeInTheDocument();
+    expect(screen.getAllByRole('textbox')).toHaveLength(2);
+    expect(screen.getByRole('button')).toBeInTheDocument();
+    expect(screen.getByText('Result:')).toBeInTheDocument();
   });
 
   it('should display the result on add', () => {
-    const calculator = mount(<Calculator />);
+    render(<Calculator />);
+    const input1 = screen.getAllByRole('textbox')[0];
+    const input2 = screen.getAllByRole('textbox')[1];
+    const button = screen.getByRole('button');
 
-    const form = calculator.find('form');
+    input1.value = 3;
+    input2.value = 5;
+    button.click();
 
-    form.childAt(0).instance().value = 3;
-    form.childAt(1).instance().value = 5;
-    form.find('button').simulate('click');
-
-    const result = calculator.find('.result');
-    expect(result.text()).toEqual('8');
+    expect(screen.getByText('Result: 8')).toBeInTheDocument();
   });
 });
