@@ -3,16 +3,10 @@
   "version": "1.0.0",
   "description": "Testing react components with jest and enzyme",
   "main": "index.js",
-  "scripts": {
-    "test": "jest",
-    "eslint": "node node_modules/eslint/bin/eslint.js src"
-  },
   "author": "IP",
   "license": "MIT",
   "private": true,
-  "engines": {
-    "node": "12.14.0"
-  },
+  "engines": {},
   "dependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1"
